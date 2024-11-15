@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const [completed, setCompleted] = useState("");
+  const [completed, setCompleted] = useState(false);
 
   const [tasks, setTasks] = useState([]);
 
@@ -37,13 +37,22 @@ function App() {
     } else {
       const indextoberemove = tasks.indexOf((ele) => ele == task);
       tasks.splice(indextoberemove,1)
-      
-      
       setTasks([...tasks, { task, description, completed }]);
     }
   }
-
-  
+   
+   function markasCompleted(e) {
+    setTask(e.target.value)
+    if (task == "") {
+      return alert("please give a task name");}
+      else {
+         for(let i=0;i<tasks.length;i++)
+          if(i.task==e.target.value)
+            setCompleted!=setCompleted
+          alert("task has been marked as completed");
+      } 
+      }
+   
 
   return (
     <>
@@ -99,6 +108,7 @@ function App() {
           Update tasks
         </button>
         <button
+         
           style={{
             marginLeft: 15,
             marginTop: 20,
@@ -109,6 +119,8 @@ function App() {
           Delete Tasks
         </button>
         <button
+        
+        onClick={markasCompleted}
           style={{
             marginLeft: 15,
             marginTop: 20,
